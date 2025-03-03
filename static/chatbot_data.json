@@ -1,0 +1,51 @@
+[
+    {
+        "keywords": [
+            "what is autism",
+            "autism definition",
+            "define autism"
+        ],
+        "response": "Autism, or Autism Spectrum Disorder (ASD), is a neurodevelopmental condition that affects how people perceive and interact with the world. It typically involves challenges with social communication, repetitive behaviors, and sometimes restricted interests."
+    },
+    {
+        "keywords": [
+            "symptoms",
+            "signs",
+            "indicators"
+        ],
+        "response": "Common signs of autism include: difficulty with social interactions, delayed language development, repetitive behaviors, intense interests in specific topics, sensory sensitivities, and difficulty understanding nonverbal communication."
+    },
+    {
+        "keywords": [
+            "diagnosis",
+            "diagnosed",
+            "test"
+        ],
+        "response": "Autism diagnosis typically involves comprehensive evaluation by healthcare professionals, including developmental screening, behavioral assessments, and medical tests. Early diagnosis is important for accessing appropriate support."
+    },
+    {
+        "keywords": [
+            "treatment",
+            "therapy",
+            "help"
+        ],
+        "response": "While there's no 'cure' for autism, many supportive therapies can help, including behavioral therapy, speech therapy, occupational therapy, and educational interventions. Treatment plans are typically individualized based on specific needs."
+    },
+    {
+        "keywords": [
+            "cause",
+            "causes",
+            "why autism"
+        ],
+        "response": "The exact causes of autism aren't fully understood, but research suggests it's likely due to a combination of genetic and environmental factors that affect brain development."
+    },
+    {
+        "keywords": [
+            "hello",
+            "hi",
+            "hey",
+            "greetings"
+        ],
+        "response": "Hello! I'm here to answer your questions about autism. How can I help you today?"
+    }
+]

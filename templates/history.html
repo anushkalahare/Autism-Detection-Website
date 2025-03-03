@@ -1,0 +1,51 @@
+<!-- history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment History - Autism Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>Autism Detection</h2>
+        </div>
+        <div class="nav-right">
+            <span>Welcome, {{ username }}!</span>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Your Assessment History</h1>
+        
+        {% if assessments %}
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Result</th>
+                        <th>Probability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assessment in assessments %}
+                    <tr>
+                        <td>{{ assessment.assessment_date }}</td>
+                        <td>{{ assessment.result }}</td>
+                        <td>{{ "%.2f"|format(assessment.probability) }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You haven't taken any assessments yet.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('home') }}" class="button">Take New Assessment</a>
+    </div>
+</body>
+</html>

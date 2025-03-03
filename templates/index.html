@@ -1,0 +1,146 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>Autism Detection</h2>
+        </div>
+        <div class="nav-right">
+            {% if logged_in %}
+                <span>Welcome, {{ username }}!</span>
+                <a href="{{ url_for('history') }}">History</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Autism Detection</h1>
+        <p>Answer the questions below to determine if you might have autism:</p>
+        <form action="/predict" method="post">
+            
+            <!-- Screening Questions -->
+            <label>1. Do you often notice small details that others miss?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A1_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A1_Score" value="0" required> No</label>
+            </div>
+
+            <label>2. Do you enjoy arranging things in a specific order?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A2_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A2_Score" value="0" required> No</label>
+            </div>
+
+            <label>3. Do you find it difficult to make eye contact?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A3_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A3_Score" value="0" required> No</label>
+            </div>
+
+            <label>4. Do you prefer to do things the same way every time?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A4_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A4_Score" value="0" required> No</label>
+            </div>
+
+            <label>5. Do you struggle with understanding other people's feelings?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A5_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A5_Score" value="0" required> No</label>
+            </div>
+
+            <label>6. Do you have a strong interest in specific topics?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A6_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A6_Score" value="0" required> No</label>
+            </div>
+
+            <label>7. Do you find social situations confusing?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A7_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A7_Score" value="0" required> No</label>
+            </div>
+
+            <label>8. Do you often repeat certain actions or words?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A8_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A8_Score" value="0" required> No</label>
+            </div>
+
+            <label>9. Do you have trouble understanding sarcasm or jokes?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A9_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A9_Score" value="0" required> No</label>
+            </div>
+
+            <label>10. Do you prefer being alone rather than in social settings?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="A10_Score" value="1" required> Yes</label>
+                <label><input type="radio" name="A10_Score" value="0" required> No</label>
+            </div>
+
+            <!-- Personal Information -->
+            <label>11. Age:</label>
+            <input type="number" name="age" min="1" max="100" required>
+
+            <label>12. Gender:</label>
+            <select name="gender" required>
+                <option value="m">Male</option>
+                <option value="f">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label>13. Did you have jaundice as a baby?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="jaundice" value="1" required> Yes</label>
+                <label><input type="radio" name="jaundice" value="0" required> No</label>
+            </div>
+
+            <label>14. Do you have a family history of autism?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="autism" value="1" required> Yes</label>
+                <label><input type="radio" name="autism" value="0" required> No</label>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h2>{{ prediction_text }}</h2>
+    </div>
+
+    <!-- Chatbot widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header" id="chatbot-header">
+            <span>Autism Support Chat</span>
+            <button id="toggle-chatbot">^</button>
+        </div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="bot-message">Hello! I'm here to answer your questions about autism. How can I help you today?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-message" placeholder="Type your question...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+</body>
+</html>
+
+
+
+
+
