@@ -124,7 +124,7 @@ h1 {
 
 input[type="number"], input[type="text"], input[type="password"], input[type="email"], select {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px 5px;
     border: 1px solid #bbdefb;
     border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
