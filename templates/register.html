@@ -4,59 +4,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Autism Detection</title>
+    <title>Register - Early Autism Identification</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Register</h1>
-        
-        {% if error %}
-        <div class="error-message">
-            {{ error }}
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>Early Autism Identification</h2>
         </div>
-        {% endif %}
-        
-        <form action="/register" method="post" class="auth-form">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+        <div class="nav-right">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('home') }}">Home</a>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card register-card">
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Register to track your assessment history</p>
             </div>
             
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
             </div>
+            {% endif %}
             
-            <div class="form-group">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+            <form action="/register" method="post" class="auth-form">
+                <div class="register-form-grid">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="1" max="100" placeholder="Your age" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>Select your gender</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="auth-button">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                <p><a href="{{ url_for('home') }}" class="home-link">Back to Home</a></p>
             </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" min="1" max="100" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="m">Male</option>
-                    <option value="f">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            
-            <button type="submit">Register</button>
-        </form>
-        
-        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
-        <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+        </div>
     </div>
 </body>
 </html>
