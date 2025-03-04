@@ -1,0 +1,430 @@
+/* === AUTH STYLES CSS === */
+/* This stylesheet is specifically for the login and registration pages */
+
+/* === GENERAL STYLES === */
+:root {
+    --primary-color: #1e88e5;
+    --primary-dark: #1565c0;
+    --primary-light: #64b5f6;
+    --primary-ultra-light: #e3f2fd;
+    --text-dark: #263238;
+    --text-medium: #546e7a;
+    --text-light: #90a4ae;
+    --error-color: #e53935;
+    --success-color: #43a047;
+    --border-color: #e0e0e0;
+    --card-shadow: 0 10px 30px rgba(30, 136, 229, 0.1);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === NAVBAR STYLES === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background-color: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+.nav-logo h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-logo h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    border-radius: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-medium);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all var(--transition-speed);
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--primary-ultra-light);
+}
+
+/* === AUTH MAIN CONTENT === */
+.auth-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+}
+
+.auth-card {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 550px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    position: relative;
+}
+
+.auth-card-left {
+    flex: 5;
+    background: linear-gradient(135deg, #bbdefb 0%, #2196f3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-illustration {
+    background-image: url('/api/placeholder/500/300');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 80%;
+    opacity: 0.15;
+    position: absolute;
+    filter: blur(1px);
+}
+
+.auth-card-left::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: url('/api/placeholder/600/600') center/cover no-repeat;
+    opacity: 0.05;
+    filter: blur(2px);
+}
+
+.auth-card-right {
+    flex: 7;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === AUTH HEADER === */
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    color: var(--primary-dark);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.auth-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    margin: 0 auto 1rem;
+    border-radius: 2px;
+}
+
+.auth-header p {
+    color: var(--text-medium);
+    font-size: 1rem;
+}
+
+/* === ERROR MESSAGE === */
+.error-message {
+    background-color: rgba(229, 57, 53, 0.1);
+    color: var(--error-color);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--error-color);
+}
+
+/* === AUTH FORM === */
+.auth-form {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.auth-form input, 
+.auth-form select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background-color: #f9fafc;
+    transition: all var(--transition-speed);
+}
+
+.auth-form input:focus, 
+.auth-form select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.2);
+    background-color: white;
+}
+
+.auth-form input::placeholder, 
+.auth-form select::placeholder {
+    color: var(--text-light);
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+}
+
+.forgot-password a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 10px rgba(30, 136, 229, 0.2);
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 136, 229, 0.3);
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+}
+
+.auth-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(30, 136, 229, 0.2);
+}
+
+/* === AUTH FOOTER === */
+.auth-footer {
+    margin-top: auto;
+    text-align: center;
+}
+
+.auth-footer p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+}
+
+.auth-footer a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.home-link {
+    color: var(--text-medium) !important;
+    font-size: 0.85rem;
+}
+
+.home-link:hover {
+    color: var(--text-dark) !important;
+}
+
+/* === REGISTER SPECIFIC STYLES === */
+.register-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.register-card .auth-card-right {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 992px) {
+    .auth-card {
+        flex-direction: column;
+        max-width: 600px;
+    }
+    
+    .auth-card-left {
+        display: none;
+    }
+    
+    .register-form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .auth-card-right {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        box-shadow: none;
+        background-color: transparent;
+    }
+    
+    .auth-card-right {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+        padding: 2rem 1.5rem;
+    }
+    
+    .auth-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .navbar {
+        padding: 1rem 5%;
+    }
+    
+    .nav-logo h2 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Styling for suggestion buttons */
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+    justify-content: center;
+  }
+  
+  .suggestion-button {
+    background-color: #f0f7ff;
+    border: 1px solid #b8daff;
+    border-radius: 16px;
+    color: #2b7de9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .suggestion-button:hover {
+    background-color: #e0efff;
+    border-color: #8fc3ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .suggestion-button:active {
+    background-color: #d0e7ff;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional: Add a subtle pulse animation to draw attention */
+  @keyframes subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+  
+  .suggestions:has(.suggestion-button:not(:hover)) .suggestion-button:nth-child(odd) {
+    animation: subtle-pulse 3s infinite ease-in-out;
+    animation-delay: 0.5s;
+  }
+  
+  .suggestions:has(.suggestion-button:not(:hover)) .suggestion-button:nth-child(even) {
+    animation: subtle-pulse 3s infinite ease-in-out;
+    animation-delay: 1.5s;
+  }

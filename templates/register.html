@@ -1,85 +1,107 @@
-<!-- register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Early Autism Identification</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Register - Wellness Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth-styles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar">
-        <div class="nav-left">
-            <h2>WELLNESS</h2>
-        </div>
-        <div class="nav-right">
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('home') }}">Home</a>
-        </div>
-    </div>
-
-    <div class="auth-container">
-        <div class="auth-card register-card">
-            <div class="auth-header">
-                <h1>Create Account</h1>
-                <p>Register to track your assessment history</p>
+    <div class="page-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2>WELLNESS</h2>
             </div>
-            
-            {% if error %}
-            <div class="error-message">
-                {{ error }}
+            <div class="nav-links">
+                <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
             </div>
-            {% endif %}
-            
-            <form action="/register" method="post" class="auth-form">
-                <div class="register-form-grid">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Choose a username" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Create a password" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" min="1" max="100" placeholder="Your age" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select id="gender" name="gender" required>
-                            <option value="" disabled selected>Select your gender</option>
-                            <option value="m">Male</option>
-                            <option value="f">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="auth-main">
+            <div class="auth-card register-card">
+                <div class="auth-card-left">
+                    <div class="auth-illustration"></div>
                 </div>
                 
-                <button type="submit" class="auth-button">Create Account</button>
-            </form>
-            
-            <div class="auth-footer">
-                <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
-                <p><a href="{{ url_for('home') }}" class="home-link">Back to Home</a></p>
+                <div class="auth-card-right">
+                    <div class="auth-header">
+                        <h1>Create Account</h1>
+                        <div class="auth-divider"></div>
+                        <p>Register to track your assessment history</p>
+                    </div>
+                    
+                    {% if error %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    
+                    <form action="/register" method="post" class="auth-form">
+                        <div class="register-form-grid">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-wrapper">
+                                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <div class="input-wrapper">
+                                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="age" name="age" min="1" max="100" placeholder="Your age" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <div class="input-wrapper">
+                                    <select id="gender" name="gender" required>
+                                        <option value="" disabled selected>Select your gender</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="auth-button">Create Account</button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                        <p><a href="{{ url_for('home') }}" class="home-link">Back to Home</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Screening Assessment | Wellness</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ass-styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>WELLNESS</h2>
+        </div>
+        <div class="nav-right">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('assessment') }}" class="active">Assessment</a>
+            {% if logged_in %}
+                <a href="{{ url_for('history') }}">History</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <span>Welcome, {{ username }}!</span>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="hero-section">
+            <h1>Autism Screening Assessment</h1>
+            <p class="subtitle">A preliminary tool to identify potential autism traits</p>
+        </div>
+
+        <div class="assessment-intro">
+            <div class="info-card">
+                <div class="info-content">
+                    <h2>Before You Begin</h2>
+                    <p>This assessment is designed as a preliminary screening tool and is not a diagnostic instrument. The results should be discussed with qualified healthcare professionals for proper evaluation.</p>
+                    <p>Please answer all questions as honestly as possible. Your responses will help provide a more accurate screening result.</p>
+                    
+                    {% if not logged_in %}
+                    <div class="login-prompt">
+                        <p><strong>Note:</strong> Creating an account allows you to save your assessment results and track changes over time.</p>
+                        <div class="prompt-buttons">
+                            <a href="{{ url_for('login') }}" class="cta-button secondary">Login</a>
+                            <a href="{{ url_for('register') }}" class="cta-button secondary">Register</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% if prediction_text %}
+        <div class="result-section">
+            <div class="result-card">
+                <h2>Assessment Result</h2>
+                <p class="result-text">{{ prediction_text }}</p>
+                <div class="result-explanation">
+                    <h3>What does this mean?</h3>
+                    <p>This screening result indicates the likelihood of autism traits based on your responses. Remember that this is not a diagnosis but a preliminary assessment.</p>
+                    <h3>Next Steps</h3>
+                    <p>We recommend discussing these results with a healthcare professional who specializes in autism spectrum disorders for a comprehensive evaluation.</p>
+                    <div class="result-actions">
+                        <a href="{{ url_for('assessment') }}" class="cta-button primary">Take Assessment Again</a>
+                        {% if logged_in %}
+                        <a href="{{ url_for('history') }}" class="cta-button secondary">View History</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <form class="assessment-form" action="{{ url_for('predict') }}" method="post">
+            <h2>Autism Spectrum Quotient (AQ-10)</h2>
+            <p class="form-instruction">Please select the most appropriate answer for each question:</p>
+            
+            <div class="question-group">
+                <div class="question-item">
+                    <p class="question">1. I often notice small sounds when others do not.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A1_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A1_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">2. I usually concentrate more on the whole picture, rather than the small details.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A2_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A2_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">3. I find it easy to do more than one thing at once.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A3_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A3_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">4. If there is an interruption, I can switch back to what I was doing very quickly.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A4_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A4_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">5. I find it easy to 'read between the lines' when someone is talking to me.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A5_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A5_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">6. I know how to tell if someone listening to me is getting bored.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A6_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A6_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">7. When I'm reading a story, I find it difficult to work out the characters' intentions.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A7_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A7_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">8. I like to collect information about categories of things (e.g., types of cars, birds, trains, plants).</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A8_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A8_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">9. I find it easy to work out what someone is thinking or feeling just by looking at their face.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A9_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A9_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="question-item">
+                    <p class="question">10. I find it difficult to work out people's intentions.</p>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="A10_Score" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="A10_Score" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Additional Information</h2>
+            <p class="form-instruction">This information helps provide a more accurate assessment:</p>
+            
+            <div class="additional-info">
+                <div class="form-group">
+                    <label for="age">1.  Age :</label>
+                    <input type="number" id="age" name="age" min="2" max="120" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>2.  Gender :</label>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="m" required>
+                            <span class="radio-text">Male</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="f">
+                            <span class="radio-text">Female</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="other">
+                            <span class="radio-text">Other</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>3.  Born with jaundice?</label>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="jaundice" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jaundice" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>4.  Family member with autism?</label>
+                    <div class="options">
+                        <label class="radio-label">
+                            <input type="radio" name="autism" value="Yes" required>
+                            <span class="radio-text">Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="autism" value="No">
+                            <span class="radio-text">No</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="consent-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" required>
+                    <span class="checkbox-text">I understand that this assessment is not a diagnostic tool and results should be discussed with a healthcare professional.</span>
+                </label>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="cta-button primary">Submit Assessment</button>
+                <button type="reset" class="cta-button secondary">Reset Form</button>
+            </div>
+        </form>
+        {% endif %}
+        
+        <div class="disclaimer-section">
+            <h2>Important Disclaimer</h2>
+            <p>This assessment tool is for informational purposes only and is not intended to diagnose autism spectrum disorder. The results are based on a statistical model trained on self-reported data and should be used as a preliminary screening.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>WELLNESS</h3>
+                <p>Supporting neurodiversity through awareness, education, and early identification.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('assessment') }}">Assessment</a></li>
+                    {% if logged_in %}
+                    <li><a href="{{ url_for('history') }}">History</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Important Notice</h3>
+                <p>This screening tool is not a diagnostic instrument. A formal diagnosis should be made by qualified healthcare professionals.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wellness Autism Screening Tool. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header" id="chatbot-header">
+            <span>Autism Support Chat</span>
+            <button id="toggle-chatbot">^</button>
+        </div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="bot-message">Hello! I'm here to answer your questions about autism. How can I help you today?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-message" placeholder="Type your question...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+</body>
+</html>

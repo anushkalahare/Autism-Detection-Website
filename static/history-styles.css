@@ -1,0 +1,264 @@
+/* === HISTORY PAGE STYLES === */
+/* This stylesheet is specifically for the assessment history page */
+
+/* === HISTORY MAIN CONTENT === */
+.history-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+}
+
+.history-card {
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    padding: 3rem;
+}
+
+/* === HISTORY HEADER === */
+.history-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.history-header h1 {
+    color: var(--primary-dark);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.history-header p {
+    color: var(--text-medium);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* === USER WELCOME === */
+.user-welcome {
+    color: var(--text-medium);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-ultra-light);
+    border-radius: 4px;
+    margin-right: 1rem;
+}
+
+/* === HISTORY TABLE === */
+.table-container {
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.history-table thead {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: white;
+}
+
+.history-table th {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.history-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+}
+
+.history-table tbody tr:hover {
+    background-color: var(--primary-ultra-light);
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Result cell styling */
+.result-cell {
+    font-weight: 600;
+}
+
+.result-negative {
+    color: var(--success-color);
+}
+
+.result-positive {
+    color: var(--error-color);
+}
+
+/* Probability bar styling */
+.probability-bar-container {
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.probability-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.probability-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+/* View details button */
+.view-details-btn {
+    padding: 0.5rem 0.8rem;
+    background-color: var(--primary-ultra-light);
+    color: var(--primary-dark);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition-speed);
+}
+
+.view-details-btn:hover {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+/* === NO HISTORY SECTION === */
+.no-history {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.no-history-content {
+    text-align: center;
+    padding: 2.5rem;
+    background-color: #f9fafc;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.empty-state-icon {
+    margin-bottom: 1.5rem;
+}
+
+.no-history-content h3 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.no-history-content p {
+    color: var(--text-medium);
+    font-size: 1rem;
+}
+
+/* === HISTORY ACTIONS === */
+.history-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.history-actions .auth-button {
+    max-width: 300px;
+}
+
+.auth-button{
+    padding-left: 60px;
+}
+
+/* === HISTORY FOOTER === */
+.history-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: white;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.03);
+}
+
+.history-footer p {
+    color: var(--text-medium);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer-separator {
+    display: inline-block;
+    margin: 0 8px;
+    color: var(--text-light);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 992px) {
+    .history-card {
+        padding: 2.5rem 2rem;
+    }
+    
+    .history-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .view-details-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 0.8rem 0.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .history-card {
+        box-shadow: none;
+        background-color: transparent;
+        padding: 1.5rem 1rem;
+    }
+    
+    .history-main {
+        padding: 1rem 0;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .history-table {
+        min-width: 500px;
+    }
+    
+    .no-history-content {
+        padding: 2rem 1rem;
+    }
+}

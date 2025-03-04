@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 import numpy as np
 import joblib
@@ -80,8 +79,20 @@ def load_chatbot_responses():
 @app.route('/')
 def home():
     if 'user_id' in session:
-        return render_template('index.html', logged_in=True, username=session.get('username'))
-    return render_template('index.html', logged_in=False)
+        return render_template('home.html', logged_in=True, username=session.get('username'))
+    return render_template('home.html', logged_in=False)
+
+@app.route('/about')
+def about():
+    if 'user_id' in session:
+        return render_template('about.html', logged_in=True, username=session.get('username'))
+    return render_template('about.html', logged_in=False)
+
+@app.route('/assessment')
+def assessment():
+    if 'user_id' in session:
+        return render_template('assessment.html', logged_in=True, username=session.get('username'))
+    return render_template('assessment.html', logged_in=False)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -161,7 +172,7 @@ def predict():
                 try:
                     data.append(float(value))  # Convert numerical values
                 except ValueError:
-                    return render_template('index.html', 
+                    return render_template('assessment.html', 
                                            prediction_text=f"Invalid input: {key} -> {value}",
                                            logged_in='user_id' in session,
                                            username=session.get('username'))
@@ -171,7 +182,7 @@ def predict():
 
         # Ensure correct input length
         if len(data) != 14:
-            return render_template('index.html', 
+            return render_template('assessment.html', 
                                   prediction_text=f"Error: Expected 14 features, got {len(data)}",
                                   logged_in='user_id' in session,
                                   username=session.get('username'))
@@ -219,14 +230,14 @@ def predict():
             conn.commit()
             conn.close()
 
-        return render_template('index.html', 
+        return render_template('assessment.html', 
                               prediction_text=f'{prediction} (Confidence: {probability:.2f}%)',
                               logged_in='user_id' in session,
                               username=session.get('username'))
 
     except Exception as e:
         print("Error during prediction:", str(e))  # Debugging
-        return render_template('index.html', 
+        return render_template('assessment.html', 
                               prediction_text=f'Error: {str(e)}',
                               logged_in='user_id' in session,
                               username=session.get('username'))

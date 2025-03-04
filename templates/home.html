@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Awareness and Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepg-styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>WELLNESS</h2>
+        </div>
+        <div class="nav-right">
+            <a href="{{ url_for('home') }}" class="active">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('assessment') }}">Assessment</a>
+            {% if logged_in %}
+                <a href="{{ url_for('history') }}">History</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <span>Welcome, {{ username }}!</span>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="hero-section">
+            <h1>Understanding Autism Spectrum Disorder</h1>
+            <p class="subtitle">Awareness • Support • Empowerment</p>
+        </div>
+
+        <div class="info-section">
+            <div class="info-card">
+                <div class="info-image">
+                    <img src="https://images.ctfassets.net/zvaujq68yh0h/3U9nFmNsFimUceWYs0Eicc/85c8db95858d6b60fb97064a11736499/1-min.jpg?w=680&h=453&fl=progressive&q=50&fm=jpg" alt="Children with diverse abilities playing together" />
+                </div>
+                <div class="info-content">
+                    <h2>What is Autism?</h2>
+                    <p>Autism Spectrum Disorder (ASD) is a complex neurodevelopmental condition that affects how individuals perceive and interact with the world around them. It is characterized by challenges in social communication, repetitive behaviors, and sometimes, focused interests.</p>
+                    <p>Every person with autism is unique, with their own strengths and challenges. The spectrum encompasses a wide range of abilities and characteristics, and early identification can lead to better support and outcomes.</p>
+                </div>
+            </div>
+
+            <div class="info-card reversed">
+                <div class="info-content">
+                    <h2>Recognition and Support</h2>
+                    <p>Recognizing the signs of autism early can make a significant difference in a person's life. Some common signs include:</p>
+                    <ul class="feature-list">
+                        <li>Challenges with social interactions and communication</li>
+                        <li>Repetitive behaviors or restricted interests</li>
+                        <li>Sensitivity to sensory stimuli (sounds, lights, textures)</li>
+                        <li>Difficulty with changes in routines</li>
+                        <li>Unique strengths in pattern recognition, memory, or focused interests</li>
+                    </ul>
+                </div>
+                <div class="info-image">
+                    <img src="https://www.indiaautismcenter.org/wp-content/uploads/child-with-their-mom-playing-brain-teaser-1.jpg" alt="Supportive environment for autistic individuals" />
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-image">
+                    <img src="https://dreambigchildren.com/wp-content/uploads/2021/08/Strategies-for-autism.jpeg" alt="Person engaged in therapeutic activities" />
+                </div>
+                <div class="info-content">
+                    <h2>Early Screening Matters</h2>
+                    <p>Early screening and diagnosis can connect individuals with appropriate interventions and support systems. Our assessment tool provides a preliminary screening that can help identify potential traits associated with autism.</p>
+                    <p>While this screening is not a substitute for professional medical diagnosis, it can be an important first step toward understanding and seeking appropriate support.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Take Our Autism Screening Assessment</h2>
+                <p>Our evidence-based screening tool can help identify potential autism traits and provide guidance on next steps.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('assessment') }}" class="cta-button primary">Start Assessment</a>
+                    <a href="{{ url_for('register') }}" class="cta-button secondary">Create Account</a>
+                </div>
+                <p class="cta-note">Creating an account allows you to save your assessment history and track changes over time. However, you can also take the assessment without registering.</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <h2>Understanding Autism: By the Numbers</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">1 in 36</div>
+                    <div class="stat-description">Children in India are diagnosed with autism</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3:1</div>
+                    <div class="stat-description">Ratio of boys to girls diagnosed with autism</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-description">Of children can be diagnosed before age 3</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">~2%</div>
+                    <div class="stat-description">Of the global population is on the autism spectrum</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>WELLNESS</h3>
+                <p>Supporting neurodiversity through awareness, education, and early identification.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('assessment') }}">Assessment</a></li>
+                    {% if logged_in %}
+                    <li><a href="{{ url_for('history') }}">History</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Important Notice</h3>
+                <p>This screening tool is not a diagnostic instrument. A formal diagnosis should be made by qualified healthcare professionals.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wellness Autism Screening Tool. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header" id="chatbot-header">
+            <span>Autism Support Chat</span>
+            <button id="toggle-chatbot">^</button>
+        </div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="bot-message">Hello! I'm here to answer your questions about autism. How can I help you today?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-message" placeholder="Type your question...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+</body>
+</html>

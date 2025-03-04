@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our Project | Autism Awareness and Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <h2>WELLNESS</h2>
+        </div>
+        <div class="nav-right">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}" class="active">About</a>
+            <a href="{{ url_for('assessment') }}">Assessment</a>
+            {% if logged_in %}
+                <a href="{{ url_for('history') }}">History</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+                <span>Welcome, {{ username }}!</span>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="about-hero">
+            <div class="about-hero-content">
+                <h1>About Our Project</h1>
+                <div class="subtitle-line"></div>
+                <p class="subtitle">Our mission, technology, and vision for autism support</p>
+            </div>
+        </div>
+
+        <div class="about-container">
+            <!-- Mission Section -->
+            <div class="about-section mission-section">
+                <div class="section-header">
+                    <div class="section-icon">🌟</div>
+                    <h2>Our Mission</h2>
+                </div>
+                <div class="section-content">
+                    <p>The Wellness Autism Screening Tool was developed with a clear mission: to make early autism identification accessible, straightforward, and supportive. We believe that early identification leads to earlier intervention, which research has consistently shown to improve outcomes for individuals on the autism spectrum. Our goal is to provide a screening tool that helps individuals and families take that important first step.</p>
+                </div>
+            </div>
+
+            <!-- Technology Section -->
+            <div class="about-section tech-section">
+                <div class="section-header">
+                    <div class="section-icon">💻</div>
+                    <h2>The Technology Behind Our Tool</h2>
+                </div>
+                <div class="section-content">
+                    <p>Our assessment tool utilizes advanced machine learning algorithms to analyze responses to evidence-based screening questions. We've implemented a sophisticated ensemble model that combines three powerful classifiers:</p>
+                    
+                    <div class="tech-cards">
+                        <div class="tech-card">
+                            <div class="tech-card-header">
+                                <span class="tech-name">XGBoost</span>
+                            </div>
+                            <div class="tech-card-body">
+                                <span class="tech-desc">A gradient boosting framework known for its performance and speed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-card-header">
+                                <span class="tech-name">LightGBM</span>
+                            </div>
+                            <div class="tech-card-body">
+                                <span class="tech-desc">A gradient boosting framework that uses tree-based learning algorithms</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <div class="tech-card-header">
+                                <span class="tech-name">CatBoost</span>
+                            </div>
+                            <div class="tech-card-body">
+                                <span class="tech-desc">A machine learning algorithm that can handle categorical features automatically</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>By combining these models using a soft voting mechanism, we achieve a more reliable and robust prediction than any single model could provide alone.</p>
+                </div>
+            </div>
+
+            <!-- Approach Section -->
+            <div class="about-section approach-section">
+                <div class="section-header">
+                    <div class="section-icon">🔍</div>
+                    <h2>Our Approach to Screening</h2>
+                </div>
+                <div class="section-content">
+                    <p>Our screening questions are based on established research in autism identification, focusing on key behavioral indicators that have been shown to correlate with autism spectrum conditions.</p>
+                    
+                    <div class="approach-grid">
+                        <div class="approach-card">
+                            <div class="approach-icon">🔄</div>
+                            <div class="approach-text">Repetitive behaviors and patterns</div>
+                        </div>
+                        <div class="approach-card">
+                            <div class="approach-icon">👥</div>
+                            <div class="approach-text">Social interaction patterns</div>
+                        </div>
+                        <div class="approach-card">
+                            <div class="approach-icon">🗣️</div>
+                            <div class="approach-text">Communication tendencies</div>
+                        </div>
+                        <div class="approach-card">
+                            <div class="approach-icon">🧠</div>
+                            <div class="approach-text">Cognitive processing styles</div>
+                        </div>
+                    </div>
+                    
+                    <p>Additionally, we consider important factors like age, gender, and family history, which research has shown may influence the presentation of autism traits.</p>
+                </div>
+            </div>
+
+            <!-- Privacy Section -->
+            <div class="about-section privacy-section">
+                <div class="section-header">
+                    <div class="section-icon">🔒</div>
+                    <h2>Privacy and Ethics</h2>
+                </div>
+                <div class="section-content">
+                    <div class="privacy-container">
+                        <div class="privacy-text">
+                            <p>We take privacy and ethical considerations seriously. User data is stored securely, and assessment results are only visible to the user.</p>
+                            <p>We're transparent about the limitations of our tool - while it provides a helpful screening, it is not a diagnostic instrument. We encourage users to consult with healthcare professionals for formal evaluation and diagnosis.</p>
+                        </div>
+                        <div class="privacy-image">
+                            <img src="data:image/png;base64,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" alt="Privacy and security illustration">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="about-section team-section">
+                <div class="section-header">
+                    <div class="section-icon">👥</div>
+                    <h2>Our Team</h2>
+                </div>
+                <div class="section-content">
+                    <p>Our team includes Anushka Lahare, Manoj Masule, Shreya Mohod and Harshali Patil . We've worked collaboratively to develop a tool that is both technically sound and sensitive to the needs of those seeking information about autism.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/static/anushka.jpeg" alt="Anushka">
+                            </div>
+                            <div class="member-info">
+                                <h3>Anushka Lahare</h3>
+                                <p>121B1B141</p>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/api/placeholder/150/150" alt="Manoj">
+                            </div>
+                            <div class="member-info">
+                                <h3>Manoj Masule</h3>
+                                <p>121B1B153</p>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/static/shreya.jpeg" alt="Shreya">
+                            </div>
+                            <div class="member-info">
+                                <h3>Shreya Mohod</h3>
+                                <p>121B1B154</p>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-image">
+                                <img src="/api/placeholder/150/150" alt="Harshali">
+                            </div>
+                            <div class="member-info">
+                                <h3>Harshali Patil</h3>
+                                <p>121B1B177</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-cta-section">
+            <div class="cta-content">
+                <h2>Ready to Try Our Assessment?</h2>
+                <p>Take a step toward understanding autism traits with our evidence-based screening tool.</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('assessment') }}" class="cta-button primary">Start Assessment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>WELLNESS</h3>
+                <p>Supporting neurodiversity through awareness, education, and early identification.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('assessment') }}">Assessment</a></li>
+                    {% if logged_in %}
+                    <li><a href="{{ url_for('history') }}">History</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Important Notice</h3>
+                <p>This screening tool is not a diagnostic instrument. A formal diagnosis should be made by qualified healthcare professionals.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wellness Autism Screening Tool. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot widget -->
+    <div class="chatbot-widget">
+        <div class="chatbot-header" id="chatbot-header">
+            <span>Autism Support Chat</span>
+            <button id="toggle-chatbot">^</button>
+        </div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chat-messages" id="chat-messages">
+                <div class="bot-message">Hello! I'm here to answer your questions about autism. How can I help you today?</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-message" placeholder="Type your question...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+    <script>
+        // Chatbot toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotHeader = document.getElementById('chatbot-header');
+            const chatbotContent = document.getElementById('chatbot-content');
+            const toggleButton = document.getElementById('toggle-chatbot');
+            const sendButton = document.getElementById('send-message');
+            const userMessageInput = document.getElementById('user-message');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            let chatbotOpen = false;
+            
+            // Toggle chatbot visibility
+            chatbotHeader.addEventListener('click', function() {
+                chatbotOpen = !chatbotOpen;
+                chatbotContent.style.display = chatbotOpen ? 'block' : 'none';
+                toggleButton.textContent = chatbotOpen ? 'v' : '^';
+            });
+            
+            // Send message functionality
+            function sendMessage() {
+                const userMessage = userMessageInput.value.trim();
+                if (userMessage) {
+                    // Add user message to chat
+                    const userMessageElement = document.createElement('div');
+                    userMessageElement.classList.add('user-message');
+                    userMessageElement.textContent = userMessage;
+                    chatMessages.appendChild(userMessageElement);
+                    
+                    // Clear input
+                    userMessageInput.value = '';
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Simulate bot response (in a real app, this would be an API call)
+                    setTimeout(function() {
+                        const botResponses = {
+                            "what is autism": "Autism, or autism spectrum disorder (ASD), refers to a broad range of conditions characterized by challenges with social skills, repetitive behaviors, speech, and nonverbal communication. There is not one autism but many subtypes, most influenced by a combination of genetic and environmental factors.",
+                            "how is autism diagnosed": "Autism is typically diagnosed through comprehensive behavioral evaluations conducted by specialists such as developmental pediatricians, child psychologists, or neurologists. The diagnosis process often includes structured observations, interviews with caregivers, and standardized assessment tools.",
+                            "signs of autism": "Common signs of autism include delayed speech or language skills, avoiding eye contact, difficulty understanding others' feelings, repetitive behaviors, intense reactions to sensory stimuli, and focused interests. Signs can vary widely among individuals.",
+                            "default": "Thank you for your question. Our team is committed to providing accurate information about autism. For specific questions about diagnosis or treatment, we recommend consulting with healthcare professionals."
+                        };
+                        
+                        // Simple keyword matching for demo purposes
+                        let botReply = botResponses.default;
+                        for (const [key, value] of Object.entries(botResponses)) {
+                            if (userMessage.toLowerCase().includes(key)) {
+                                botReply = value;
+                                break;
+                            }
+                        }
+                        
+                        const botMessageElement = document.createElement('div');
+                        botMessageElement.classList.add('bot-message');
+                        botMessageElement.textContent = botReply;
+                        chatMessages.appendChild(botMessageElement);
+                        
+                        // Scroll to bottom again
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                }
+            }
+            
+            // Send message on button click
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Send message on Enter key
+            userMessageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
